@@ -19,29 +19,29 @@ $$
 where the non-Markovian kernel $(t-s)^{H-\frac{1}{2}}$ makes direct simulation costly. Following the same **multi-factor approximation** used in the Lifted Heston model, we have:
 
 $$
-\frac{1}{\Gamma\left(H+\frac{1}{2}\right)} \int_0^t (t-s)^{H-\frac{1}{2}} dW_s \approx \int_0^t K^n(t-s)\,dW_s = \sum_{i=1}^{n} c_i Y_t^i
+\frac{1}{\Gamma\left(H+\frac{1}{2}\right)} \int_0^t (t-s)^{H-\frac{1}{2}} dW_s \approx \int_0^t K^n(t-s)dW_s = \sum_{i=1}^{n} c_i Y_t^i
 $$
 
-where $K^n(t) = \sum_{i=1}^{n} c_i e^{-x_i t} \approx \frac{t^{H-\frac{1}{2}}}{\Gamma(H+\frac{1}{2})}$ and each factor $Y^i$ follows a mean-reverting Ornstein-Uhlenbeck process ( $dY_t^i = -x_i Y_t^i \, dt + dW_t, \quad Y_0^i = 0$ ).
+where $K^n(t) = \sum_{i=1}^{n} c_i e^{-x_i t} \approx \frac{t^{H-\frac{1}{2}}}{\Gamma(H+\frac{1}{2})}$ and each factor $Y^i$ follows a mean-reverting Ornstein-Uhlenbeck process ( $dY_t^i = -x_i Y_t^idt + dW_t, \quad Y_0^i = 0$ ).
 
 This defines the **Lifted Bergomi model**:
 
 $$
-V_t^n = \xi_0(t) \exp\left(\eta\sqrt{2H}\,\Gamma\!\left(H+\tfrac{1}{2}\right)\int_0^t K^n(t-s)\,dW_s - H\eta^2\Gamma^2\!\left(H+\tfrac{1}{2}\right)\int_0^t (K^n(s))^2\,ds\right)
+V_t^n = \xi_0(t) \exp\left(\eta\sqrt{2H}\Gamma\left(H+\tfrac{1}{2}\right)\int_0^t K^n(t-s)dW_s - H\eta^2\Gamma^2\left(H+\tfrac{1}{2}\right)\int_0^t (K^n(s))^2ds\right)
 $$
 
 $$
-dS_t^n = S_t^n\sqrt{V_t^n}\,dB_t
+dS_t^n = S_t^n\sqrt{V_t^n}dB_t
 $$
 
-with $d\langle B, W\rangle_t = \rho\,dt$.
+with $d\langle B, W\rangle_t = \rho dt$.
 
 ### Monte Carlo Pricing
 
 Pricing of an European calls by direct simulation:
 
 $$
-C_0 = e^{-rT}\,\mathbb{E}\left[(S_T^n - K)^+\right]
+C_0 = e^{-rT}\mathbb{E}\left[(S_T^n - K)^+\right]
 $$
 
 ## 2 - Implied Volatility Smiles
@@ -49,7 +49,7 @@ $$
 We plotted implied volatility smiles and will compare them for two maturities and various **$\text{n}_\text{factors}$** (5, 10, 20) under the following parameters:
 
 $$
-H = 0.07, \quad \eta = 1.9, \quad \rho = -0.9, \quad S_0 = 1, \quad \xi_0(t) \equiv 0.02
+H = 0.07, \quad \eta = 1.9, \quad \rho = -0.9, \quad S_0 = 1, \quad \xi_0(t) = 0.02
 $$
 
 Results are shown for a single maturity $T$. Short-maturity results are not presented: the combination of rough variance paths and exponential nonlinearity makes Monte Carlo convergence expensive at $T \ll 1$. <br>
