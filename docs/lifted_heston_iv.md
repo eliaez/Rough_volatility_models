@@ -29,7 +29,7 @@ $$
 
 where $\phi$ and $(\psi^i)_{i=1,\dots,n}$ are deterministic functions satisfying ODEs 
 with initial conditions $\psi^i(0) = 0$. One can show via **Itô's formula** that $M$ 
-is a local martingale (see **_Proof_** at the end), then, a **true martingale** since $\operatorname{Re} \psi \leq 0$, which gives:
+is a local martingale (see **_Proof_** at the end), then, a **true martingale** since $\text{Re}(\psi) \leq 0$, which gives:
 
 $$
 M_t = \mathbb{E}\left[\exp(u\log S_T) \mid \mathcal{F}_t\right]
@@ -128,62 +128,32 @@ dL_t = \sqrt{V_t}\, dB_t - \frac{1}{2}V_t\, dt
 $$
 
 By applying Itô's formula to $M_t$:
+
 $$
-dM_t = \frac{\partial M_t}{\partial t}dt 
-+ \frac{\partial M_t}{\partial S_t}dS_t 
-+ \frac{1}{2}\frac{\partial^2 M_t}{\partial S_t^2}(dS_t)^2 
-+ \sum_{i=1}^n\left(\frac{\partial M_t}{\partial U^i_t}dU^i_t 
-+ \frac{1}{2}\frac{\partial^2 M_t}{\partial (U^i_t)^2}(dU^i_t)^2 
-+ \frac{\partial^2 M_t}{\partial U^i_t \partial S_t}d\langle U^i_t, S_t\rangle\right)
+dM_t = \frac{\partial M_t}{\partial t}dt + \frac{\partial M_t}{\partial S_t}dS_t + \frac{1}{2}\frac{\partial^2 M_t}{\partial S_t^2}(dS_t)^2 + \sum_{i=1}^n\left(\frac{\partial M_t}{\partial U^i_t}dU^i_t + \frac{1}{2}\frac{\partial^2 M_t}{\partial (U^i_t)^2}(dU^i_t)^2 + \frac{\partial^2 M_t}{\partial U^i_t \partial S_t}d\langle U^i_t, S_t\rangle\right)
 $$
 
 which gives:
 
 $$
-\frac{dM_t}{M_t} = \left(-F\!\left(u,\sum_{i=1}^n c_i\psi^i(T-t)\right)g_0(T-t) 
-- \sum_{i=1}^n c_i U^i_t F\!\left(u,\sum_{j=1}^n c_j\psi^j(T-t)\right)\right)dt
+\frac{dM_t}{M_t} = \left(-F\left(u,\sum_{i=1}^n c_i\psi^i(T-t)\right)g_0(T-t) - \sum_{i=1}^n c_i U^i_t F\left(u,\sum_{j=1}^n c_j\psi^j(T-t)\right)\right)dt + \sum_{i=1}^n c_i x_i \psi^i(T-t)U^i_t\text{dt}
 $$
 
-$$
-+ \sum_{i=1}^n c_i x_i \psi^i(T-t)U^i_t\, dt 
-+ u\sqrt{V_t}\,dB_t 
-+ \frac{1}{2}V_t(u^2 - u)\,dt 
-+ \nu\sqrt{V_t}\sum_{i=1}^n c_i\psi^i(T-t)\,dW_t
-$$
+$$ + u\sqrt{V_t}\text{dB}_t + \frac{1}{2}V_t(u^2 - u)\text{dt} + \nu\sqrt{V_t}\sum_{i=1}^n c_i\psi^i(T-t)\text{dW}_t - \lambda V_t \sum_{i=1}^n c_i\psi^i(T-t)\text{dt} - \sum_{i=1}^n c_i x_i \psi^i(T-t)U^i_t\text{dt} $$
 
-$$
-- \lambda V_t \sum_{i=1}^n c_i\psi^i(T-t)\,dt 
-- \sum_{i=1}^n c_i x_i \psi^i(T-t)U^i_t\,dt 
-+ \frac{1}{2}\nu^2 V_t \sum_{i=1}^n c_i^2(\psi^i(T-t))^2\,dt 
-+ u\nu\rho V_t \sum_{i=1}^n c_i\psi^i(T-t)\,dt
-$$
+$$ + \frac{1}{2}\nu^2 V_t \sum_{i=1}^n c_i^2(\psi^i(T-t))^2\text{dt} + u\nu\rho V_t \sum_{i=1}^n c_i\psi^i(T-t)\text{dt} $$
 
 The terms $\sum_{i=1}^n c_i x_i \psi^i(T-t)U^i_t$ cancel. Grouping the remaining 
 $dt$ terms and using $V_t = g_0(T-t) + \sum_{i=1}^n c_i U^i_t$:
 
 $$
-\frac{dM_t}{M_t} = \left(-F\!\left(u,\sum_{i=1}^n c_i\psi^i(T-t)\right)
-\left(g_0(T-t) + \sum_{i=1}^n c_i U^i_t\right) 
-+ V_t F\!\left(u,\sum_{i=1}^n c_i\psi^i(T-t)\right)\right)dt
-+ u\sqrt{V_t}\,dB_t 
-+ \nu\sqrt{V_t}\sum_{i=1}^n c_i\psi^i(T-t)\,dW_t
+\frac{dM_t}{M_t} = \left(-F\left(u,\sum_{i=1}^n c_i\psi^i(T-t)\right)\left(g_0(T-t) + \sum_{i=1}^n c_i U^i_t\right) + V_t F\left(u,\sum_{i=1}^n c_i\psi^i(T-t)\right)\right)dt+ u\sqrt{V_t}\text{dB}_t + \nu\sqrt{V_t}\sum_{i=1}^n c_i\psi^i(T-t)\text{dW}_t
 $$
 
 Since $g_0(T-t) + \sum_{i=1}^n c_i U^i_t = V_t$, the $dt$ term vanishes exactly:
 
 $$
-\frac{dM_t}{M_t} = u\sqrt{V_t}\,dB_t 
-+ \nu\sqrt{V_t}\sum_{i=1}^n c_i\psi^i(T-t)\,dW_t
+\frac{dM_t}{M_t} = u\sqrt{V_t}\text{dB}_t + \nu\sqrt{V_t}\sum_{i=1}^n c_i\psi^i(T-t)\text{dW}_t
 $$
 
 There is no $dt$ term, so $M_t$ is a **local martingale**.
-
-> **Recall:**
-> $$
-> F(u, v) = \frac{1}{2}(u^2 - u) + (\rho \nu u - \lambda)v + \frac{\nu^2}{2}v^2
-> $$
-> 
-> where $(\psi^i)_{i=1}^n$, with $\psi^i(0) = 0$ for all $i$ solves the system of Riccati ODEs:
-> $$
-> (\psi^i)' = -x_i \psi^i + F\!\left(u, \sum_{j=1}^n c_j \psi^j\right)
-> $$
