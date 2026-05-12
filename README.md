@@ -48,9 +48,9 @@ We study smile convergence as $n \to \infty$ across two regimes:
 
 The Lifted Bergomi replaces the affine structure with an exponential variance inherited from Rough Bergomi:
 
-$$V_t^n = \xi_0(t) \exp\left(\eta\sqrt{2H}\,\Gamma\!\left(H+\tfrac{1}{2}\right)\int_0^t K^n(t-s)\,dW_s - H\eta^2\Gamma^2\!\left(H+\tfrac{1}{2}\right)\int_0^t (K^n(s))^2\,ds\right)$$
+$$V_t^n = \xi_0(t) \exp\left(\eta\sqrt{2H}\Gamma\left(H+\tfrac{1}{2}\right)\int_0^t K^n(t-s)dW_s - H\eta^2\Gamma^2\left(H+\tfrac{1}{2}\right)\int_0^t (K^n(s))^2ds\right)$$
 
-Without a tractable characteristic function, pricing is done via **Monte Carlo**: $C_0 = e^{-rT}\,\mathbb{E}[(S_T^n - K)^+]$
+Without a tractable characteristic function, pricing is done via **Monte Carlo**: $C_0 = e^{-rT}\mathbb{E}[(S_T^n - K)^+]$
 
 **Observations:** The Lifted Bergomi produces a steeper and more realistic skew than the Lifted Heston, though this comes at the cost of Monte Carlo noise in the wings and a significantly higher computational burden at short maturities.
 
