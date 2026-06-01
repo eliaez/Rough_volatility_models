@@ -55,8 +55,8 @@ $$\hat{V}_{t_k} = g_0(t_k) + \sum_{i=1}^{n} c_i \hat{U}^i_{t_k}$$
 with
 
 $$\hat{U}^i_0 = 0, \qquad \hat{U}^i_{t_{k+1}} = \frac{1}{1 + x_i \Delta t} 
-\left( \hat{U}^i_{t_k} - \lambda \hat{V}_{t_k} \Delta t 
-+ \nu \sqrt{\max(0, \hat{V}_{t_k})} \,(W_{t_{k+1}} - W_{t_k}) \right)$$
+\left( \hat{U}^i_{t_k} - \lambda \hat{V}_{t_k} \Delta t + 
+\nu \sqrt{\max(0, \hat{V}_{t_k})}(W_{t_{k+1}} - W_{t_k}) \right)$$
 
 and the **initial curve**:
 
